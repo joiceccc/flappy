@@ -7,11 +7,6 @@ $(document).ready(function(){
   var gameloop = null;
   var cloudloop = null;
   var foodloop = null;
-  var worldloop = null;
-  var bonusloop = null;
-  var fivefoodloop = null;
-  var changeworld = 0
-  var bonuscounter = 0
   var movement = {
     up: false,
     down: false
@@ -21,15 +16,15 @@ $(document).ready(function(){
   var createbird =  function () {
     //create bird
     var bird = document.createElement("img");
-    bird.src = 'bee50.png';
+    bird.src = 'bird.png';
 
     bird.setAttribute('id','bird')
 
     $('.game').append(bird);
      $('#bird').css({
       'position' : 'relative',
-      'left' : '20%',
-      'top' : '230px'
+      'left' : '30px',
+      'top' : '225px'
     });
   };
 
@@ -65,7 +60,7 @@ $(document).ready(function(){
     var $bird = $('#bird');
     var position = $bird.position();
     if (position.top < 438) {
-    //  console.log(position.top)
+      console.log(position.top)
     $bird.css({top: position.top + 2}) } else { console.log("lost ")}
 
     };
@@ -79,7 +74,7 @@ $(document).ready(function(){
 
   // create cloud at position of x and y
   var generatefood = function(y){
-    var $food = $("<img>").attr("src", 'honey.png');
+    var $food = $("<img>").attr("src", 'pipe.png');
     $('.game').append($food);
     $food.css({
       'position' : 'absolute',
@@ -121,17 +116,8 @@ $(document).ready(function(){
     });
   };
 
-
-
 var generateblock = function(y){
-
-    if (changeworld % 2 === 1) {
-          var $cloud = $("<img>").attr("src", 'smallyellowbird.png');;
-        } else if (changeworld % 2 === 0) {
-          var $cloud = $("<img>").attr("src", 'hungryclouds.png');;
-         }
-
-
+    var $cloud = $("<img>").attr("src", 'cloud.png');
     $('.game').append($cloud);
     $cloud.css({
       'position' : 'absolute',
@@ -164,134 +150,15 @@ var generateblock = function(y){
         var cloudLeftRange   = birdLeft <= cloudLeft && cloudLeft <= birdRight;
 
         if ( (cloudTopRange || cloudBottomRange) && cloudLeftRange) {
-
           console.log("die")
-          var gameOver = document.createElement("h1");
-
-
-           gameOver.setAttribute('id','gameOver')
-
-            $('.game').append(gameOver);
-
-             $('#gameOver').css({
-               'position' : 'absolute',
-                'left' : '23%',
-                'top' : '30%'
-                 });
-           $('#gameOver').text("GAME OVER");
-
           clearInterval(gameloop);
           clearInterval(cloudloop);
           clearInterval(foodloop);
-          clearInterval(worldloop);
-          clearInterval(bonusloop);
-          clearInterval(fivefoodloop);
+
           // var gameloop = null;
           // var cloudloop = null;
           // var foodloop = null;
        restartGame();
-
-        }
-      }
-    });
-  };
-
-
-var generateWorld = function(y){
-    var $world = $("<img>").attr("src", 'holes.png');
-    $('.game').append($world);
-    $world.css({
-      'position' : 'absolute',
-      'left' : '300px',
-      'top' : y + 'px'
-    });
-
-
-    $world.animate({left: 0}, {
-      duration : 1500,
-      easing: 'linear',
-      complete: function(){
-        console.log($(this))
-        $world.remove();
-      },
-      progress : function() {
-        var $bird        = $('#bird');
-        var birdPosition = $bird.position();
-        var birdTop      = birdPosition.top;
-        var birdBottom   = birdPosition.top + 50;
-        var birdLeft     = birdPosition.left;
-        var birdRight    = birdPosition.left + 50;
-        var currentWorld = $(this).position();
-        var worldTop     = currentWorld.top;
-        var worldBottom  = currentWorld.top + 50;
-        var worldLeft    = currentWorld.left;
-
-
-        var worldTopRange    = birdTop <= worldTop && worldTop <= birdBottom;
-        var worldBottomRange = birdTop <= worldBottom && worldBottom <= birdBottom;
-        var worldLeftRange   = birdLeft <= worldLeft && worldLeft <= birdRight;
-
-        if ( (worldTopRange || worldBottomRange) && worldLeftRange) {
-          console.log("change world")
-          changeworld = changeworld + 1
-
-          if (changeworld % 2 === 1) {
-          $('.game').css('background-color', ' #A6D785').fadeIn("slow");
-        } else if (changeworld % 2 === 0) {
-          $('.game').css('background-color', ' #cbe5f8').fadeIn("slow");
-         }
-
-
-
-        }
-      }
-    });
-  };
-
-var generateBonus = function(y){
-
-    bonuscounter = bonuscounter + 1
-    var $bonus = $("<img>").attr("src", 'honey.png');
-    $('.game').append($bonus);
-    $bonus.css({
-      'position' : 'absolute',
-      'left' : '300px',
-      'top' : y + 'px'
-    });
-
-
-    $bonus.animate({left: 0}, {
-      duration : 1000,
-      easing: 'linear',
-      complete: function(){
-        console.log($(this))
-        $(this).remove();
-      },
-      progress : function() {
-        var $bird        = $('#bird');
-        var birdPosition = $bird.position();
-        var birdTop      = birdPosition.top;
-        var birdBottom   = birdPosition.top + 50;
-        var birdLeft     = birdPosition.left;
-        var birdRight    = birdPosition.left + 50;
-        var currentBonus = $(this).position();
-        var bonusTop     = currentBonus.top;
-        var bonusBottom  = currentBonus.top + 50;
-        var bonusLeft    = currentBonus.left;
-
-
-        var bonusTopRange    = birdTop <= bonusTop && bonusTop <= birdBottom;
-        var bonusBottomRange = birdTop <= bonusBottom && bonusBottom <= birdBottom;
-        var bonusLeftRange   = birdLeft <= bonusLeft && bonusLeft <= birdRight;
-
-        if ( (bonusTopRange || bonusBottomRange) && bonusLeftRange) {
-          console.log("Bonues yeahh")
-
-          $(this).remove();
-          score = score + 1
-          $('#score').text("Score " + score);
-
-
 
         }
       }
@@ -321,8 +188,8 @@ var gameload = function() {
 
        $('#startGameButton').css({
          'position' : 'absolute',
-         'left' : '40%',
-         'top' : '45%'
+         'left' : '45%',
+         'top' : '40%'
            });
       $('#startGameButton').text("START");
 
@@ -332,36 +199,16 @@ var gameload = function() {
 
   var startGame = function () {
     console.log("start");
-    $('#gameOver').remove();
+
     bindKeys();
     generatefood(random());
-
-
-    worldloop = setInterval(function(){
-      generateWorld(random());
-    }, 6000);
 
     foodloop = setInterval(function(){
       generatefood(random());
     }, 1000);
-
-    bonusloop = setInterval(function(){
-      console.log( 'bonusloop start');
-        var bonusNum = random();
-          fivefoodloop = setInterval(function(){
-            generateBonus(bonusNum);
-            console.log("Bonuscounter: " + bonuscounter);
-            if (bonuscounter > 10) {
-              clearInterval(fivefoodloop);
-              bonuscounter = 0;
-            }
-          },150);
-      }, 8000);
-
     cloudloop = setInterval(function(){
       generateblock(random());
     }, 3500);
-
     gameloop = setInterval(function(){
       moveBird();
       gravity();
@@ -381,8 +228,6 @@ var gameload = function() {
       gameload();
 
       score = 0
-
-      changeworld = 0
 
 
 

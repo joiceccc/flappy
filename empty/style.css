@@ -2,6 +2,7 @@ body {
   height: 500px;
   width: 300px;
   margin: auto;
+  margin-top: 10%;
 }
 
 .game {
@@ -9,17 +10,36 @@ body {
   height: 100%;
   width: 100%;
   position: relative;
-  background-color: #e8f4f8;
+  background-color:  #cbe5f8;
 }
+
 
 #score {
 
-  color: black;
+  color: white;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+
 }
 
 #startGameButton {
 
-  color : red;
-  background-color: white;
-  padding: 3px;
+  hover : orange;
+  color : white;
+  background-color: #c39c7b;
+  border-radius: 30%;
+  height: 40px;
+  width: 100px;
+  font-size: 20px;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+
+}
+
+#startGameButton:hover{
+  background-color: #ff7f7f;
+
+}
+
+#gameOver {
+  color: #ff7f7f;
+   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
