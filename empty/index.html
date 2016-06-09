@@ -5,15 +5,22 @@
     <title>FLAPPY</title>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script  src="main.js"></script>
 
-    <link rel="stylesheet" href="style.css">
+    <script  src="./js/bee.js"></script>
+    <script  src="./js/food.js"></script>
+    <script  src="./js/cloud.js"></script>
+    <script  src="./js/game.js"></script>
+    <script  src="./js/world.js"></script>
+
+
+    <link rel="stylesheet" href="./css/style.css">
   </head>
   <body >
-
-
-  <section class="game"></section>
-
-
+    <section class="game">
+      <h3 id="score">Score 0</h3>
+      <button id="startGameButton">START</button>
+      <img src="./assets/bee.png" id="bee">
+      <h1 id="gameOver">"GAME OVER"</h3>
+    </section>
   </body>
 </html>

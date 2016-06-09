@@ -1,0 +1,109 @@
+var CloudEngine = function(game) {
+  var game = game;
+
+  var randomTimeoutStarted    = false;
+
+  var cloudSMActive           = false;
+  var cloudSMCooldownDuration = 2000;
+  var cloudSMCooldown         = true;
+  var cloudSMCooldownTimeout  = null;
+
+  var cloudLGActive           = false;
+  var cloudLGCooldownDuration = 5000;
+  var cloudLGCooldown         = true;
+  var cloudLGCooldownTimeout  = null;
+
+  var stopSMCooldownTimeout = function () {
+    clearTimeout(cloudSMCooldownTimeout);
+  };
+
+  var stopLGCooldownTimeout = function () {
+    clearTimeout(cloudLGCooldownTimeout);
+  };
+
+  var startSMCooldownTimeout = function () {
+    cloudSMCooldownTimeout = setTimeout(function(){
+      cloudSMCooldown = true;
+      stopSMCooldownTimeout();
+    }, cloudSMCooldownDuration);
+  };
+
+  var startLGCooldownTimeout = function () {
+    cloudLGCooldownTimeout = setTimeout(function(){
+      cloudLGCooldown = true;
+      stopLGCooldownTimeout();
+    }, cloudLGCooldownDuration);
+  };
+
+  var createCloud = function (imagePath, pixelSize, hp , speed , cloudClass) {
+    var postion = Math.floor(Math.random() * (500 - pixelSize));
+
+    var $cloud = $('<img src="' + imagePath + '" class=" ' + cloudClass + '" data-hp="' + hp + '">"');
+    $('.game').append($cloud);
+    $cloud.css({
+      'position' : 'absolute',
+      'left' : '300px',
+      'top' : postion + 'px'
+    }).animate({
+      left: 0
+    }, {
+      duration : speed,
+      easing: 'linear',
+      complete: function(){
+        $(this).remove();
+      },
+      progress: function () {
+        var $bee        = $('#bee');
+        var beePosition = $bee.position();
+        var beeTop      = beePosition.top;
+        var beeBottom   = beePosition.top + 50;
+        var beeLeft     = beePosition.left;
+        var beeRight    = beePosition.left + 50;
+
+        var currentCloud = $(this).position();
+        var cloudTop     = currentCloud.top;
+        var cloudBottom  = currentCloud.top + 50;
+        var cloudLeft    = currentCloud.left;
+
+        // check if cloudTop/cloudBottom is between beeTop and beeBottom
+        var cloudTopRange    = beeTop <= cloudTop && cloudTop <= beeBottom;
+        var cloudBottomRange = beeTop <= cloudBottom && cloudBottom <= beeBottom;
+        var cloudLeftRange   = beeLeft <= cloudLeft && cloudLeft <= beeRight;
+
+        if ( (cloudTopRange || cloudBottomRange) && cloudLeftRange) {
+          console.log("Die");
+          game.gameOver();
+        }
+      }
+    });
+  };
+
+  var randomDelay = function () {
+    var delaySMTimeout = setTimeout(function(){
+      cloudSMActive = true;
+    }, Math.random() * 2000);
+
+    var delayLGTimeout = setTimeout(function(){
+      cloudLGActive = true;
+    }, Math.random() * 2000);
+  };
+
+  this.loop = function () {
+    if (!randomTimeoutStarted) {
+      randomDelay();
+      randomTimeoutStarted = true;
+    }
+
+    if (cloudSMActive && cloudSMCooldown) {
+      cloudSMCooldown = false;
+      startSMCooldownTimeout();
+      createCloud("./assets/hungryclouds.png", 75, 1 , 1500 , "clouds" );
+    }
+
+    if (cloudLGActive && cloudLGCooldown) {
+      cloudLGCooldown = false;
+      startLGCooldownTimeout();
+      createCloud("./assets/largehungryclouds.png", 130, 3 , 8500 ,"XLclouds");
+    }
+  };
+};
