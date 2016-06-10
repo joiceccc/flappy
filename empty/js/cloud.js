@@ -1,15 +1,17 @@
 var CloudEngine = function(game) {
   var game = game;
 
+
+
   var randomTimeoutStarted    = false;
 
   var cloudSMActive           = false;
-  var cloudSMCooldownDuration = 2000;
+  var cloudSMCooldownDuration = 3000;
   var cloudSMCooldown         = true;
   var cloudSMCooldownTimeout  = null;
 
   var cloudLGActive           = false;
-  var cloudLGCooldownDuration = 5000;
+  var cloudLGCooldownDuration = 6000;
   var cloudLGCooldown         = true;
   var cloudLGCooldownTimeout  = null;
 
@@ -88,22 +90,24 @@ var CloudEngine = function(game) {
     }, Math.random() * 2000);
   };
 
-  this.loop = function () {
+  this.loop = function (dimension) {
     if (!randomTimeoutStarted) {
       randomDelay();
       randomTimeoutStarted = true;
     }
 
     if (cloudSMActive && cloudSMCooldown) {
+      var cloudSMImage = dimension % 2 === 0 ? "./assets/hungryclouds.png" : "./assets/yellowbird.png" ;
       cloudSMCooldown = false;
       startSMCooldownTimeout();
-      createCloud("./assets/hungryclouds.png", 75, 1 , 1500 , "clouds" );
+      createCloud(cloudSMImage, 75, 1 , 1500 , "clouds" );
     }
 
     if (cloudLGActive && cloudLGCooldown) {
+      var cloudLGImage = dimension % 2 === 0 ? "./assets/largehungryclouds.png" : "./assets/largeyellowbird.png" ;
       cloudLGCooldown = false;
       startLGCooldownTimeout();
-      createCloud("./assets/largehungryclouds.png", 130, 3 , 8500 ,"XLclouds");
+      createCloud(cloudLGImage, 130, 3 , 8500 ,"XLclouds");
     }
   };
 };

@@ -10,7 +10,8 @@ body {
   height: 100%;
   width: 100%;
   position: relative;
-  background-color:  #cbe5f8;
+ background-image: url("../assets/mountainbackground.png");
+
 }
 
 

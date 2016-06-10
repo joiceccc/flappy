@@ -1,7 +1,7 @@
-var worldEngine = function(game) {
+var WorldEngine = function(game) {
   var game = game;
 
-  var worldCooldownDuration = 2000;
+  var worldCooldownDuration = 6000;
   var worldCooldown         = true;
   var worldCooldownTimeout  = null;
 
@@ -20,12 +20,10 @@ var worldEngine = function(game) {
     }, worldCooldownDuration);
   };
 
-
-
-  var createWorld = function (left, position, duration) {
-    left     = left || 300;
-    postion  = position || Math.floor(Math.random() * 450);
-    duration = duration || 1500;
+  var createWorld = function () {
+    left     =  300;
+    postion  =  Math.floor(Math.random() * 450);
+    duration = 1500;
 
     var $world = $('<img class="world" src="./assets/holes.png">');
     $('.game').append($world);
@@ -39,29 +37,30 @@ var worldEngine = function(game) {
       duration : duration,
       easing: 'linear',
       complete: function() {
+        console.log($(this))
         $(this).remove();
       },
       progress: function () {
         var $bee        = $('#bee');
         var beePosition = $bee.position();
         var beeTop      = beePosition.top;
-        var beeBottom   = beePosition.top + 50;
+        var beeBottom   = beePosition.top + 60;
         var beeLeft     = beePosition.left;
-        var beeRight    = beePosition.left + 50;
+        var beeRight    = beePosition.left + 60;
 
         var currentWorld = $(this).position();
         var WorldTop     = currentWorld.top;
-        var WorldBottom  = currentWorld.top + 50;
+        var WorldBottom  = currentWorld.top + 60;
         var WorldLeft    = currentWorld.left;
 
         // check if cloudTop/cloudBottom is between beeTop and beeBottom
-        var worldTopRange    = beeTop <= worldTop && worldTop <= beeBottom;
-        var worldBottomRange = beeTop <= worldBottom && worldBottom <= beeBottom;
-        var worldLeftRange   = beeLeft <= worldLeft && worldLeft <= beeRight;
+        var WorldTopRange    = beeTop <= WorldTop && WorldTop <= beeBottom;
+        var WorldBottomRange = beeTop <= WorldBottom && WorldBottom <= beeBottom;
+        var WorldLeftRange   = beeLeft <= WorldLeft && WorldLeft <= beeRight;
 
-        if ( (worldTopRange || worldBottomRange) && worldLeftRange) {
-
-          console.log("change world")
+        if ( (WorldTopRange || WorldBottomRange) && WorldLeftRange) {
+          console.log("Change World");
+          game.changeWorld();
         }
       }
     });
@@ -73,6 +72,5 @@ var worldEngine = function(game) {
       startCooldownTimeout();
       createWorld();
     }
-
   };
 };
