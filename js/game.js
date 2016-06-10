@@ -101,9 +101,9 @@ var Game = function(){
     dimension++;
 
     if (dimension % 2 === 1) {
-      $('.game').css('background-image','url("/Users/joice/flappy/assets/forestbackground.png")');
+      $('.game').css('background-image','url("./assets/forestbackground.png")');
     } else if (dimension % 2 === 0) {
-      $('.game').css('background-image','url("/Users/joice/flappy/assets/mountainbackground.png")');
+      $('.game').css('background-image','url("./assets/mountainbackground.png")');
     }
 
     $('.food').stop().remove()
