@@ -56,6 +56,13 @@ body {
   top: 230px;
 }
 
+#title {
+  position: relative;
+  left: 30%;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  color : #99f4f8;
+}
+
 #gameOver {
   color: #ff7f7f;
    font-family: "Comic Sans MS", "Comic Sans", cursive;
