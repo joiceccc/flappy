@@ -46,7 +46,9 @@ var Game = function(){
   var bindKeysAndButtons = function () {
     $startGameButton.on('click',function(){
       $(this).hide();
-
+      dimension = 0;
+      $('.game').css('background-image','url("./assets/mountainbackground.png")');
+       score = 0;
       $gameOver.hide();
       startGameLoop();
     });
@@ -76,8 +78,6 @@ var Game = function(){
 
   // Init game
   var init = function(){
-     dimension = 0;
-    score = 0;
     bindKeysAndButtons();
   };
 
