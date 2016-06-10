@@ -11,7 +11,16 @@ body {
   width: 100%;
   position: relative;
  background-image: url("../assets/mountainbackground.png");
+ border-radius: 10%;
 
+}
+
+#instructions {
+
+  position: absolute;
+  top: 20%;
+  left: 8%;
+  border-radius: 30%;
 }
 
 
@@ -26,8 +35,8 @@ body {
 
 #startGameButton {
   position: absolute;
-  top: 45%;
-  left: 40%;
+  top: 70%;
+  left: 33%;
   color : white;
   background-color: #c39c7b;
   border-radius: 30%;
@@ -51,7 +60,7 @@ body {
   color: #ff7f7f;
    font-family: "Comic Sans MS", "Comic Sans", cursive;
    top: 25%;
-  left: 30%;
+  left: 23%;
   position: absolute;
 }
 

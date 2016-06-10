@@ -60,6 +60,7 @@ var WorldEngine = function(game) {
 
         if ( (WorldTopRange || WorldBottomRange) && WorldLeftRange) {
           console.log("Change World");
+
           game.changeWorld();
         }
       }

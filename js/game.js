@@ -33,16 +33,20 @@ var Game = function(){
   };
 
   var startGameLoop = function () {
+    $('#instructions').hide();
+
     gameInterval = setInterval(gameloop, 1000/60);
   };
 
   var stopGameLoop = function () {
     clearInterval(gameInterval);
+
   };
 
   var bindKeysAndButtons = function () {
     $startGameButton.on('click',function(){
       $(this).hide();
+
       $gameOver.hide();
       startGameLoop();
     });
@@ -72,6 +76,8 @@ var Game = function(){
 
   // Init game
   var init = function(){
+     dimension = 0;
+    score = 0;
     bindKeysAndButtons();
   };
 
@@ -88,13 +94,20 @@ var Game = function(){
      $('.food').stop().remove()
      $('.cloud').stop().remove()
      $('.XLclouds').stop().remove()
+
     $gameOver.show();
+
+
+
+
+
     $startGameButton.text("RESTART").show();
     $('#bee').css({
       'position':'relative',
       'left': "20%",
       'top':'230px'
       });
+
   };
 
   this.changeWorld = function () {
