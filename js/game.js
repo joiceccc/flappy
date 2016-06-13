@@ -62,6 +62,7 @@ var Game = function(){
       switch (e.keyCode) {
         case 87:
           movement = true;
+          console.log("")
           break;
         case 68:
           shoot = true;
