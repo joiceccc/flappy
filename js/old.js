@@ -138,7 +138,7 @@ $(document).ready(function(){
           $(this).remove();
           score = score + 1
           console.log(score)
-       $('#score').text("Score " + score);
+       $("#score").text("Score " + score);
         }
       }
     });
