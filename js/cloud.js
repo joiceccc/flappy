@@ -86,6 +86,7 @@ var CloudEngine = function(game) {
     }, Math.random() * 2000);
   };
 
+
   this.loop = function (dimension) {
     if (!randomTimeoutStarted) {
       randomDelay();
@@ -103,6 +104,7 @@ var CloudEngine = function(game) {
       var cloudLGImage = dimension % 2 === 0 ? "./assets/largehungryclouds.png" : "./assets/largeyellowbird.png" ;
       cloudLGCooldown = false;
       startLGCooldownTimeout();
+      console.log("");
       createCloud(cloudLGImage, 130, 3 , 8500 ,"XLclouds");
     }
   };
