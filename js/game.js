@@ -123,5 +123,5 @@ var Game = function(){
 
 $(document).ready(function(){
   $('#gameOver').hide();
-  var game = new Game();
+  var newgame = new Game();
 });
