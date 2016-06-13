@@ -42,7 +42,7 @@ var WorldEngine = function(game) {
       },
       progress: function () {
 
-        worldgame.findPosition();
+        worldgame.findPosition(); ///
 
         var currentWorld = $(this).position();
         var WorldTop     = currentWorld.top;

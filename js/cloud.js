@@ -56,7 +56,7 @@ var CloudEngine = function(game) {
       },
       progress: function () {
 
-        cloudgame.findPosition();
+        cloudgame.findPosition(); //
 
         var currentCloud = $(this).position();
         var cloudTop     = currentCloud.top;
