@@ -111,8 +111,8 @@ var Bee = function() {
 
               $xlCloud.data("hp",cloudslives)
 
-            if ($xlCloud.data("hp") == 0 ){
-            $xlCloud.remove();}
+            if ($xlCloud.data("hp") === 0 ){
+            $xlCloud.remove()}
           }
         });
       }
