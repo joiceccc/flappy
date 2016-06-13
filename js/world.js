@@ -1,5 +1,5 @@
 var WorldEngine = function(game) {
-  var game = game;
+  var worldgame = game;
 
   var worldCooldownDuration = 6000;
   var worldCooldown         = true;
@@ -42,7 +42,7 @@ var WorldEngine = function(game) {
       },
       progress: function () {
 
-        game.findPosition();
+        worldgame.findPosition();
 
         var currentWorld = $(this).position();
         var WorldTop     = currentWorld.top;
@@ -50,13 +50,13 @@ var WorldEngine = function(game) {
         var WorldLeft    = currentWorld.left;
 
         // check if cloudTop/cloudBottom is between beeTop and beeBottom
-        var WorldTopRange    = game.beeTop <= WorldTop && WorldTop <= game.beeBottom;
-        var WorldBottomRange = game.beeTop <= WorldBottom && WorldBottom <= game.beeBottom;
-        var WorldLeftRange   = game.beeLeft <= WorldLeft && WorldLeft <= game.beeRight;
+        var WorldTopRange    = worldgame.beeTop <= WorldTop && WorldTop <= worldgame.beeBottom;
+        var WorldBottomRange = worldgame.beeTop <= WorldBottom && WorldBottom <= worldgame.beeBottom;
+        var WorldLeftRange   = worldgame.beeLeft <= WorldLeft && WorldLeft <= worldgame.beeRight;
 
         if ( (WorldTopRange || WorldBottomRange) && WorldLeftRange) {
           console.log("Change World");
-          game.changeWorld();
+          worldgame.changeWorld();
         }
       }
     });
