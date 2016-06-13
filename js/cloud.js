@@ -99,7 +99,7 @@ var CloudEngine = function(game) {
       createCloud(cloudSMImage, 75, 1 , 1500 , "clouds" );
     }
 
-    if (cloudLGActive && cloudLGCooldown) {
+    else if (cloudLGActive && cloudLGCooldown) {
       var cloudLGImage = dimension % 2 === 0 ? "./assets/largehungryclouds.png" : "./assets/largeyellowbird.png" ;
       cloudLGCooldown = false;
       startLGCooldownTimeout();
