@@ -149,9 +149,9 @@ $(document).ready(function(){
 var generateblock = function(y){
 
     if (changeworld % 2 === 1) {
-          var $cloud = $("<img>").attr("src", 'smallyellowbird.png');;
+          var $cloud = $("<img>").attr("src", 'smallyellowbird.png');
         } else if (changeworld % 2 === 0) {
-          var $cloud = $("<img>").attr("src", 'hungryclouds.png');;
+          var $cloud = $("<img>").attr("src", 'hungryclouds.png');
          }
 
     $cloud.addClass("clouds");

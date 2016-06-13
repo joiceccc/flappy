@@ -50,12 +50,7 @@ var FoodEngine = function(game) {
         $(this).remove();
       },
       progress: function () {
-        var $bee        = $('#bee');
-        var beePosition = $bee.position();
-        var beeTop      = beePosition.top;
-        var beeBottom   = beePosition.top + 50;
-        var beeLeft     = beePosition.left;
-        var beeRight    = beePosition.left + 50;
+       game.findPosition();
 
         var currentFood = $(this).position();
         var foodTop     = currentFood.top;
@@ -63,9 +58,9 @@ var FoodEngine = function(game) {
         var foodLeft    = currentFood.left;
 
         // check if cloudTop/cloudBottom is between beeTop and beeBottom
-        var foodTopRange    = beeTop <= foodTop && foodTop <= beeBottom;
-        var foodBottomRange = beeTop <= foodBottom && foodBottom <= beeBottom;
-        var foodLeftRange   = beeLeft <= foodLeft && foodLeft <= beeRight;
+        var foodTopRange    = game.beeTop <= foodTop && foodTop <= game.beeBottom;
+        var foodBottomRange = game.beeTop <= foodBottom && foodBottom <= game.beeBottom;
+        var foodLeftRange   = game.beeLeft <= foodLeft && foodLeft <= game.beeRight;
 
         if ( (foodTopRange || foodBottomRange) && foodLeftRange) {
           game.addScore(1);

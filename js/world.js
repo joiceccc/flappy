@@ -41,12 +41,8 @@ var WorldEngine = function(game) {
         $(this).remove();
       },
       progress: function () {
-        var $bee        = $('#bee');
-        var beePosition = $bee.position();
-        var beeTop      = beePosition.top;
-        var beeBottom   = beePosition.top + 60;
-        var beeLeft     = beePosition.left;
-        var beeRight    = beePosition.left + 60;
+
+        game.findPosition();
 
         var currentWorld = $(this).position();
         var WorldTop     = currentWorld.top;
@@ -54,9 +50,9 @@ var WorldEngine = function(game) {
         var WorldLeft    = currentWorld.left;
 
         // check if cloudTop/cloudBottom is between beeTop and beeBottom
-        var WorldTopRange    = beeTop <= WorldTop && WorldTop <= beeBottom;
-        var WorldBottomRange = beeTop <= WorldBottom && WorldBottom <= beeBottom;
-        var WorldLeftRange   = beeLeft <= WorldLeft && WorldLeft <= beeRight;
+        var WorldTopRange    = game.beeTop <= WorldTop && WorldTop <= game.beeBottom;
+        var WorldBottomRange = game.beeTop <= WorldBottom && WorldBottom <= game.beeBottom;
+        var WorldLeftRange   = game.beeLeft <= WorldLeft && WorldLeft <= game.beeRight;
 
         if ( (WorldTopRange || WorldBottomRange) && WorldLeftRange) {
           console.log("Change World");

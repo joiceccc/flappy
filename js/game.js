@@ -110,6 +110,15 @@ var Game = function(){
     $('.clouds').stop().remove()
     $('.XLclouds').stop().remove()
   };
+
+  this.findPosition = function () {
+    var $bee        = $('#bee');
+        this.beePosition = $bee.position();
+        this.beeTop      = this.beePosition.top;
+        this.beeBottom   = this.beePosition.top + 60;
+        this.beeLeft     = this.beePosition.left;
+        this.beeRight    = this.beePosition.left + 60;
+  };
 };
 
 $(document).ready(function(){

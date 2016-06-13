@@ -55,12 +55,8 @@ var CloudEngine = function(game) {
         $(this).remove();
       },
       progress: function () {
-        var $bee        = $('#bee');
-        var beePosition = $bee.position();
-        var beeTop      = beePosition.top;
-        var beeBottom   = beePosition.top + 50;
-        var beeLeft     = beePosition.left;
-        var beeRight    = beePosition.left + 50;
+
+        game.findPosition();
 
         var currentCloud = $(this).position();
         var cloudTop     = currentCloud.top;
@@ -68,9 +64,9 @@ var CloudEngine = function(game) {
         var cloudLeft    = currentCloud.left;
 
         // check if cloudTop/cloudBottom is between beeTop and beeBottom
-        var cloudTopRange    = beeTop <= cloudTop && cloudTop <= beeBottom;
-        var cloudBottomRange = beeTop <= cloudBottom && cloudBottom <= beeBottom;
-        var cloudLeftRange   = beeLeft <= cloudLeft && cloudLeft <= beeRight;
+        var cloudTopRange    = game.beeTop <= cloudTop && cloudTop <= game.beeBottom;
+        var cloudBottomRange = game.beeTop <= cloudBottom && cloudBottom <= game.beeBottom;
+        var cloudLeftRange   = game.beeLeft <= cloudLeft && cloudLeft <= game.beeRight;
 
         if ( (cloudTopRange || cloudBottomRange) && cloudLeftRange) {
           console.log("Die");
